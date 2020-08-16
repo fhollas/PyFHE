@@ -46,7 +46,7 @@ add_profile = './profile/add.prof'
 f, primes, P = setup(4096, 3.2, 22, 49, 4)
 
 # print('-----plaintext-----')
-msg1 = np.random.randint(0, 2, 4096).tolist()
+msg1 = np.random.randint(0, 2, 100).tolist()
 print(hex_rep(msg1))
 pr, start = set_timer_profile()
 
