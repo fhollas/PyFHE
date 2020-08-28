@@ -143,9 +143,9 @@ class NTT:
         for i, coeff in enumerate(_poly):
 
             rev_i = self.bitReverse(i, N_bit)
-            print(rev_i)
 
             if rev_i > i:
+                print(coeff)
                 coeff ^= _poly[rev_i]
                 _poly[rev_i] ^= coeff
                 coeff ^= _poly[rev_i]
