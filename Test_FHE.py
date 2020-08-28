@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 from FHE import FHE
 from CRTPoly import CRTPoly
 from numTh import findPrimes
@@ -52,12 +53,12 @@ def polyMul(p1, p2, primes):
     return np.remainder(result, 2).tolist()
 
 
-poly_degree = 2048
+poly_degree = 256
 stdev = 3.2
 L = 4
-primes, bits = findPrimes(22, 2048, 4)
+primes, bits = findPrimes(22, 256, 4)
 print(primes)
-a, bits = findPrimes(10, 2048, 1)
+a, bits = findPrimes(10, 256, 1)
 P = a[0]
 # primes = [521, 569, 577]
 modulus = 1
@@ -112,6 +113,7 @@ print('\n==Homomorphic Multiplication')
 mul_result = multiply(c, c1, primes)
 mul_result = f.keySwitch(mul_result, switch_keys[0])
 mul_result = f.modSwitch(mul_result, 0)
+print(mul_result)
 
 print('\n==Decrypt multiplied ciphers')
 start_time = time.time()
