@@ -145,8 +145,8 @@ class NTT:
             rev_i = self.bitReverse(i, N_bit)
 
             if rev_i > i:
-                print(coeff)
-                coeff ^= _poly[rev_i]
+                coeff = int(coeff)
+                coeff ^= int(_poly[rev_i])
                 _poly[rev_i] ^= coeff
                 coeff ^= _poly[rev_i]
                 _poly[i] = coeff
