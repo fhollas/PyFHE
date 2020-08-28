@@ -15,7 +15,7 @@ def add(c1, c2, primes):
     result = []
     result.append(result0.tolist())
     result.append(result1.tolist())
-    print(result)
+    #print(result)
     print("Time to add ciphertext:", time.time() - start_time, "seconds")
     return result
 
@@ -85,25 +85,26 @@ print("added Messages:", m3)
 print('\n==Encrypt 1st message')
 start_time = time.time()
 c = f.homoEnc(m, pk)
-print(c)
+#print(c)
 print("Time to encrypt:", time.time() - start_time, "seconds")
 
 print('\n==Decrypt 1st message')
 start_time = time.time()
 dec_mm = f.homoDec(c, sk)
-print(dec_mm)
+#print(dec_mm)
 print(dec_mm == m)
 print("Time to decrypt:", time.time() - start_time, "seconds")
 
 print('\n==Encrypt 2nd message')
 start_time = time.time()
 c1 = f.homoEnc(m1, pk)
+#print(c1)
 print("Time to encrypt:", time.time() - start_time, "seconds")
 
 print('\n==Decrypt second message')
 start_time = time.time()
 dec_mm = f.homoDec(c1, sk)
-print(dec_mm)
+#print(dec_mm)
 print(dec_mm == m1)
 print("Time to decrypt:", time.time() - start_time, "seconds")
 
@@ -115,7 +116,7 @@ mul_result = f.modSwitch(mul_result, 0)
 print('\n==Decrypt multiplied ciphers')
 start_time = time.time()
 dec_mul_result = f.homoDec(mul_result, sk)
-print(dec_mul_result)
+#print(dec_mul_result)
 print("Time to decrypt:", time.time() - start_time, "seconds")
 
 print('\n==Encryption multiplied plaintexts')
@@ -126,9 +127,9 @@ print("Time to encrypt:", time.time() - start_time, "seconds")
 print('\n==Decrypt multiplied plaintexts')
 start_time = time.time()
 dec_mm = f.homoDec(c2, sk)
-print(dec_mm)
-print(dec_mm == m2)
+#print(dec_mm)
 print("Time to decrypt:", time.time() - start_time, "seconds")
+print(f"Homomorphic multiplication succesful: {dec_mm == m2}")
 
 #print(dec_mm == m * m1)
 
@@ -139,12 +140,12 @@ print("Time to decrypt:", time.time() - start_time, "seconds")
 
 print('\n==Homomorphic Addition')
 add_result = add(c, c1, primes)
-print(add_result)
+#print(add_result)
 
 print('\n==Decrypt added ciphers')
 start_time = time.time()
 dec_add_result = f.homoDec(add_result, sk)
-print(dec_add_result)
+#print(dec_add_result)
 print("Time to decrypt:", time.time() - start_time, "seconds")
 
 print('\n==Encrypt added plaintexts')
@@ -155,28 +156,6 @@ print("Time to encrypt:", time.time() - start_time, "seconds")
 print('\n==Decrypt added plaintexts')
 start_time = time.time()
 dec_mm = f.homoDec(c3, sk)
-print(dec_mm)
-print(dec_mm == m3)
+#print(dec_mm)
 print("Time to decrypt:", time.time() - start_time, "seconds")
-
-#dec_mm = f.homoDec(c, sk)
-#print('Decrypt m')
-# print(dec_mm)
-"""
-print('Modulus Switching')
-c = f.modSwitch(c, 0)
-c = f.modSwitch(c, 1)
-"""
-
-#new_c = ((np.asarray(c1) + np.asarray(c)) % f.modulus).tolist()
-#print('Decryption')
-#dec_m = f.homoDec(new_c,sk)
-
-# if m == dec_m:
-#    print('success')
-# else:
-#    print('fail')
-#m = []
-# for bit in dec_m:
-#    m.append(int(bit))
-# print(m)
+print(f"Homomorphic addition succesful: {dec_mm == m3}")
