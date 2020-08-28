@@ -68,12 +68,12 @@ def polyAdd(p1, p2, primes):
     return np.remainder(result, 2).tolist()
 
 
-poly_degree = 512
+poly_degree = 2048
 stdev = 3.2
 L = 4
-primes, bits = findPrimes(22, 512, 4)
+primes, bits = findPrimes(22, 2048, 4)
 print(primes)
-a, bits = findPrimes(10, 512, 1)
+a, bits = findPrimes(10, 2048, 1)
 P = a[0]
 # primes = [521, 569, 577]
 modulus = 1
@@ -86,11 +86,11 @@ pk = f.publicKeyGen(sk)
 # pk = [[-24187115, -62847359, 2213875, 53855074], [-13973837, -16187706, -70042772, 76821192]]
 switch_keys = f.switchKeyGen(sk)
 
-m = [int(i) for i in str(bin(550304652486555850518304746550))[2:]]
-m1 = [int(i) for i in str(bin(579905235455641236105943994183))[2:]]
-m_mult = 550304652486555850518304746550 * 579905235455641236105943994183
+m = [int(i) for i in str(bin(1145863482667666809174044908307))[2:]]
+m1 = [int(i) for i in str(bin(57081308969036885647762169991))[2:]]
+m_mult = 1145863482667666809174044908307 * 57081308969036885647762169991
 m2 = [int(i) for i in str(bin(m_mult))[2:]]
-m_add = 550304652486555850518304746550 + 579905235455641236105943994183
+m_add = 1145863482667666809174044908307 + 57081308969036885647762169991
 m3 = [int(i) for i in str(bin(m_add))[2:]]
 
 print("\nMessage 1:", m)
@@ -127,7 +127,7 @@ print("Time to decrypt:", time.time() - start_time, "seconds")
 print('\n==Homomorphic Multiplication')
 mul_result = multiply(c, c1, primes)
 mul_result = f.keySwitch(mul_result, switch_keys[0])
-mul_result = f.modSwitch(mul_result, 0)
+#mul_result = f.modSwitch(mul_result, 0)
 #print(mul_result)
 
 print('\n==Decrypt multiplied ciphers')
@@ -138,8 +138,8 @@ print("Time to decrypt:", time.time() - start_time, "seconds")
 #print(f"Homomorphic multiplication succesful: {dec_mul_result == m2}")
 
 print('\npolyMul')
-print(polyMul(m, m1, primes))
-print(f"Homomorphic multiplication succesful: {dec_mul_result == polyMul(m, m1, primes)}")
+pMul = polyMul(m, m1, primes)
+print(f"Homomorphic multiplication succesful: {dec_mul_result == pMul}")
 
 '''
 print('\n==Encryption multiplied plaintexts')
@@ -168,8 +168,8 @@ print("Time to decrypt:", time.time() - start_time, "seconds")
 #print(f"Homomorphic addition succesful: {dec_add_result == m3}")
 
 print('\n==polyAdd')
-print(polyAdd(m, m1, primes))
-print(f"Homomorphic addition succesful: {dec_add_result == polyAdd(m, m1, primes)}")
+pAdd = polyAdd(m, m1, primes)
+print(f"Homomorphic addition succesful: {dec_add_result == pAdd}")
 
 '''
 print('\n==Encrypt added plaintexts')
